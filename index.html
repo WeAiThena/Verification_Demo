@@ -1,0 +1,79 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+        <title>AiThena Verification Client Demo</title>
+		<link rel="stylesheet" href="./new.css">
+
+    </head>
+
+    <body>
+         <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
+
+        <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyCG1rR-kCU4e2uoHLQwdk0HOOnKjDYpZRQ",
+            authDomain: "aithena-verification-service.firebaseapp.com",
+            databaseURL: "https://aithena-verification-service.firebaseio.com",
+            projectId: "aithena-verification-service",
+            storageBucket: "aithena-verification-service.appspot.com",
+            messagingSenderId: "276600426240",
+            appId: "1:276600426240:web:01a6628476d599f3846de5",
+            measurementId: "G-2JFGWN9MQ4"
+        };
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+
+        function writeData(){
+            const Product_SN = document.getElementById("Product_SN").value;
+            firebase.database().ref('Products/' + Product_SN).set({
+            a_Product_SN         : Product_SN,
+            b_QR_Code             : document.getElementById('QR_Code').value,
+            c_User_Verification   : document.getElementById('User_Verification').value,
+            d_OTP_D               : document.getElementById('OTP_D').value
+            });
+        } 
+
+        </script>
+
+
+         
+            <div class="container">
+            <h1> AiThena Live Verification Service Demo</h1>
+            <label><b>Product S/N</b></label><br>
+            <input type="text" placeholder="Product S/N" id="Product_SN"><br>
+
+            <label><b>Scanned AiThena QR Code</b></label><br>
+            <input type="text" placeholder="QR Code" id="QR_Code"><br>
+
+            <label><b>User Verification Status</b></label><br>
+            <input type="text" placeholder="Status" id="User_Verification"><br>
+
+            <label><b>OTP</b></label><br>
+            <input type="text" placeholder="OTP" id="OTP_D"><br>
+
+            <button onclick="writeData()" class="registerbtn">Send</button>
+          
+              
+            </div>
+        
+        
+        
+
+
+
+    </body>
+
+
+
+
+
+</html>
